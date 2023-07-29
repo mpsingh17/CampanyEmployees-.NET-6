@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddControllers();
 
 // Extend services container to add more services.
 builder.Services.ConfigureCORS();
@@ -30,10 +31,14 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 }); ;
 
 app.UseRouting();
+
+// Important! this should be called between UseRounting() and UseAuthorization() method.
 app.UseCors("CorsPolicy");
 
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.UseEndpoints(endpoints => endpoints.MapControllers());
 
 app.Run();
