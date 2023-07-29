@@ -1,7 +1,15 @@
+using Microsoft.AspNetCore.HttpOverrides;
+
+using CompanyEmployees.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+// Extend services container to add more services.
+builder.Services.ConfigureCORS();
+builder.Services.ConfigureIISIntegration();
 
 var app = builder.Build();
 
@@ -16,7 +24,13 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.All
+}); ;
+
 app.UseRouting();
+app.UseCors("CorsPolicy");
 
 app.UseAuthorization();
 
