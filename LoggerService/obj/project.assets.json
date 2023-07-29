@@ -191,6 +191,16 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
+      },
+      "Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Contracts.dll": {}
+        }
       }
     }
   },
@@ -481,10 +491,16 @@
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Contracts/1.0.0": {
+      "type": "project",
+      "path": "../Contracts/Contracts.csproj",
+      "msbuildProject": "../Contracts/Contracts.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Contracts >= 1.0.0",
       "NLog.Extensions.Logging >= 5.3.2"
     ]
   },
@@ -514,7 +530,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Contracts\\Contracts.csproj": {
+              "projectPath": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Contracts\\Contracts.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
