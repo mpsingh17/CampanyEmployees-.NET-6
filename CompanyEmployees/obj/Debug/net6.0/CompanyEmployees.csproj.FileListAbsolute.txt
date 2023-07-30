@@ -94,3 +94,5 @@ M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\Syste
 M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\System.Text.Json.dll
 M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\Repository.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\Repository.pdb

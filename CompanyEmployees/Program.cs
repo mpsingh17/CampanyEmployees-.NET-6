@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 builder.Services.ConfigureSqlConnection(builder.Configuration);
+builder.Services.ConfigureRepositoryManager();
 
 builder.Services.AddControllers();
 

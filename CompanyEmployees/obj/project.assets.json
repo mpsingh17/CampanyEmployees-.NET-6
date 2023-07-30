@@ -1224,6 +1224,21 @@
         "runtime": {
           "bin/placeholder/LoggerService.dll": {}
         }
+      },
+      "Repository/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Contracts": "1.0.0",
+          "Entities": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "7.0.9"
+        },
+        "compile": {
+          "bin/placeholder/Repository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Repository.dll": {}
+        }
       }
     }
   },
@@ -3633,6 +3648,11 @@
       "type": "project",
       "path": "../LoggerService/LoggerService.csproj",
       "msbuildProject": "../LoggerService/LoggerService.csproj"
+    },
+    "Repository/1.0.0": {
+      "type": "project",
+      "path": "../Repository/Repository.csproj",
+      "msbuildProject": "../Repository/Repository.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3640,7 +3660,8 @@
       "Entities >= 1.0.0",
       "LoggerService >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.9",
-      "Microsoft.EntityFrameworkCore.Tools >= 7.0.9"
+      "Microsoft.EntityFrameworkCore.Tools >= 7.0.9",
+      "Repository >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3676,6 +3697,9 @@
             },
             "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\LoggerService\\LoggerService.csproj": {
               "projectPath": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\LoggerService\\LoggerService.csproj"
+            },
+            "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Repository\\Repository.csproj": {
+              "projectPath": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Repository\\Repository.csproj"
             }
           }
         }

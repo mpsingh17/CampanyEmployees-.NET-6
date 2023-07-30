@@ -2,6 +2,7 @@
 using Entities;
 using LoggerService;
 using Microsoft.EntityFrameworkCore;
+using Repository;
 
 namespace CompanyEmployees.Extensions
 {
@@ -37,6 +38,11 @@ namespace CompanyEmployees.Extensions
                     b => b.MigrationsAssembly("CompanyEmployees")
                 )
             );
+        }
+
+        public static void ConfigureRepositoryManager(this IServiceCollection services)
+        {
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
         }
     }
 }

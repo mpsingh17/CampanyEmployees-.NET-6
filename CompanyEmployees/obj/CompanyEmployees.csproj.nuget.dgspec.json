@@ -34,6 +34,9 @@
               },
               "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\LoggerService\\LoggerService.csproj": {
                 "projectPath": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\LoggerService\\LoggerService.csproj"
+              },
+              "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Repository\\Repository.csproj": {
+                "projectPath": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Repository\\Repository.csproj"
               }
             }
           }
@@ -247,6 +250,74 @@
             "NLog.Extensions.Logging": {
               "target": "Package",
               "version": "[5.3.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Repository\\Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Repository\\Repository.csproj",
+        "projectName": "Repository",
+        "projectPath": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\mpsin\\.nuget\\packages\\",
+        "outputPath": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Repository\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mpsin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Contracts\\Contracts.csproj": {
+                "projectPath": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Contracts\\Contracts.csproj"
+              },
+              "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Entities\\Entities.csproj": {
+                "projectPath": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Entities\\Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.9, )"
             }
           },
           "imports": [
