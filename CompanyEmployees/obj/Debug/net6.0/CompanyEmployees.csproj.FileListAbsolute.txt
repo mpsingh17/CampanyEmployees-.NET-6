@@ -86,3 +86,11 @@ M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\runti
 M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\Entities.dll
 M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\Entities.pdb
+M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\Humanizer.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\Mono.TextTemplating.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\System.CodeDom.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\System.Text.Json.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\CompanyEmployees\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
