@@ -1190,6 +1190,9 @@
       "Contracts/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Entities": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Contracts.dll": {}
         },
@@ -3657,7 +3660,6 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Entities >= 1.0.0",
       "LoggerService >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.9",
@@ -3692,9 +3694,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Entities\\Entities.csproj": {
-              "projectPath": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Entities\\Entities.csproj"
-            },
             "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\LoggerService\\LoggerService.csproj": {
               "projectPath": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\LoggerService\\LoggerService.csproj"
             },

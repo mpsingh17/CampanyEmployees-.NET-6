@@ -13,3 +13,5 @@ M:\Projects\Dot Net\CompanyEmployees.sln\LoggerService\obj\Debug\net6.0\LoggerSe
 M:\Projects\Dot Net\CompanyEmployees.sln\LoggerService\obj\Debug\net6.0\refint\LoggerService.dll
 M:\Projects\Dot Net\CompanyEmployees.sln\LoggerService\obj\Debug\net6.0\LoggerService.pdb
 M:\Projects\Dot Net\CompanyEmployees.sln\LoggerService\obj\Debug\net6.0\ref\LoggerService.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\LoggerService\bin\Debug\net6.0\Entities.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\LoggerService\bin\Debug\net6.0\Entities.pdb

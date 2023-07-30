@@ -29,9 +29,6 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Entities\\Entities.csproj": {
-                "projectPath": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Entities\\Entities.csproj"
-              },
               "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\LoggerService\\LoggerService.csproj": {
                 "projectPath": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\LoggerService\\LoggerService.csproj"
               },
@@ -110,7 +107,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Entities\\Entities.csproj": {
+                "projectPath": "M:\\Projects\\Dot Net\\CompanyEmployees.sln\\Entities\\Entities.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
