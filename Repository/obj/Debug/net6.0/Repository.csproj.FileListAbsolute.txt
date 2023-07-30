@@ -1,0 +1,17 @@
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\bin\Debug\net6.0\Repository.deps.json
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\bin\Debug\net6.0\Repository.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\bin\Debug\net6.0\Repository.pdb
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\bin\Debug\net6.0\Contracts.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\bin\Debug\net6.0\Entities.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\bin\Debug\net6.0\Contracts.pdb
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\bin\Debug\net6.0\Entities.pdb
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\obj\Debug\net6.0\Repository.csproj.AssemblyReference.cache
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\obj\Debug\net6.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\obj\Debug\net6.0\Repository.AssemblyInfoInputs.cache
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\obj\Debug\net6.0\Repository.AssemblyInfo.cs
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\obj\Debug\net6.0\Repository.csproj.CoreCompileInputs.cache
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\obj\Debug\net6.0\Repository.csproj.CopyComplete
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\obj\Debug\net6.0\Repository.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\obj\Debug\net6.0\refint\Repository.dll
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\obj\Debug\net6.0\Repository.pdb
+M:\Projects\Dot Net\CompanyEmployees.sln\Repository\obj\Debug\net6.0\ref\Repository.dll
