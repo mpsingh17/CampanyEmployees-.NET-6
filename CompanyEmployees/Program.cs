@@ -18,6 +18,7 @@ builder.Services.AddControllers();
 builder.Services.ConfigureCORS();
 builder.Services.ConfigureIISIntegration();
 builder.Services.ConfigureLoggerService();
+builder.Services.AddAutoMapper(typeof(Program));
 
 
 // Loading NLog configuration.

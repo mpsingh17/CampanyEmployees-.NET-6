@@ -1,4 +1,5 @@
-﻿using Contracts;
+﻿using AutoMapper;
+using Contracts;
 using Entities.DataTransferObjects;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,13 +13,16 @@ namespace CompanyEmployees.Controllers
     {
         private IRepositoryManager _repositoryManager;
         private ILoggerManager _loggerManager;
+        private IMapper _mapper;
 
         public CompaniesController(
             IRepositoryManager repositoryManager,
-            ILoggerManager loggerManager)
+            ILoggerManager loggerManager,
+            IMapper mapper)
         {
             _repositoryManager = repositoryManager;
             _loggerManager = loggerManager;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -29,12 +33,7 @@ namespace CompanyEmployees.Controllers
                 var companies = _repositoryManager.CompanyRepository
                     .GetAllCompanies(trackChanges: false);
 
-                var companiesDTO = companies.Select(c => new CompanyDTO
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    FullAddress = string.Join(' ', c.Address, c.Country)
-                }).ToList();
+                var companiesDTO = _mapper.Map<IEnumerable<CompanyDTO>>(companies);
 
                 return Ok(companiesDTO);
             }
