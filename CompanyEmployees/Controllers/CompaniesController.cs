@@ -30,7 +30,7 @@ namespace CompanyEmployees.Controllers
 
                 return Ok(companies);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 _loggerManager.LogError($"Something went wrong in {nameof(GetAllCompanies)} action {ex}");
 
