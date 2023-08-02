@@ -8,10 +8,11 @@ namespace CompanyEmployees.Extensions
 {
     public static class ExceptionMiddlewareExtensions
     {
-        public static void ConfigureExceptionHandle(
-            this IApplicationBuilder app,
-            ILoggerManager loggerManager)
+        public static void ConfigureExceptionHandler(
+            this IApplicationBuilder app)
         {
+            var loggerManager = app.ApplicationServices.GetService<ILoggerManager>();
+
             app.UseExceptionHandler(appError =>
             {
                 appError.Run(async httpContext => 
@@ -22,7 +23,11 @@ namespace CompanyEmployees.Extensions
                     var contextFeature = httpContext.Features.Get<IExceptionHandlerFeature>();
                     if (contextFeature != null)
                     {
-                        loggerManager.LogError($"Something went wrong {contextFeature.Error}");
+                        if (loggerManager != null)
+                            loggerManager.LogError($"Something went wrong {contextFeature.Error}");
+                        else
+                            Console.WriteLine("Logger manager is null");
+
 
                         await httpContext.Response.WriteAsync(new ErrorDetails
                         {
