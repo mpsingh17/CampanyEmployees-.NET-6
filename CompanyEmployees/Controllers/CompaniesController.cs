@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using Contracts;
 using Entities.DataTransferObjects;
+using Entities.ErrorModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Repository;
+using System.Net;
 
 namespace CompanyEmployees.Controllers
 {
@@ -34,6 +35,28 @@ namespace CompanyEmployees.Controllers
             var companiesDTO = _mapper.Map<IEnumerable<CompanyDTO>>(companies);
 
             return Ok(companiesDTO);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetCompany(Guid id)
+        {
+            var company = _repositoryManager.CompanyRepository
+                .GetCompany(id, trackChanges: false);
+
+            if (company == null)
+            {
+                _loggerManager.LogInfo($"Company with ID = {id} doesn't exist in our database");
+
+                return NotFound(new ErrorDetails 
+                {
+                    StatusCode = (int) HttpStatusCode.NotFound,
+                    Message = $"The company with ID = {id} does not found."
+                
+                });
+            }
+
+            var companyDTO = _mapper.Map<CompanyDTO>(company);
+            return Ok(companyDTO);
         }
     }
 }
