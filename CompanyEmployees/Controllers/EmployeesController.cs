@@ -40,5 +40,21 @@ namespace CompanyEmployees.Controllers
             _loggerManager.LogInfo($"The company with ID = {companyId} does not exist in DB");
             return NotFound();
         }
+
+        [HttpGet("{employeeId}")]
+        public IActionResult GetEmployee(Guid companyId, Guid employeeId)
+        {
+            var employeeInDb = _repositoryManager.EmployeeRepository
+                .GetEmployee(companyId, employeeId, trackChanges: false);
+
+            if (employeeInDb != null)
+            {
+                var employeeDTO = _mapper.Map<EmployeeDTO>(employeeInDb);
+                return Ok(employeeDTO);
+            }
+
+            _loggerManager.LogInfo($"The employee with ID = {employeeId} doesn't exist in our database.");
+            return NotFound();
+        }
     }
 }

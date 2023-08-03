@@ -1,3 +1,5 @@
 2023-08-03 17:21:51.1936 INFO The company with ID = c9d4c053-49b6-410c-bc78-2d54a9991879 does not exist in DB
 2023-08-03 17:24:08.4363 INFO The company with ID = c9d4c053-49b6-410c-bc78-2d54a9991879 does not exist in DB
 2023-08-03 17:26:31.6464 INFO The company with ID = c9d4c053-49b6-410c-bc78-2d54a9991879 does not exist in DB
+2023-08-03 19:00:26.7456 INFO The company with ID = c9d4c053-49b6-410c-bc78-2d54a9991879 does not exist in DB
+2023-08-03 19:05:48.8672 INFO The employee with ID = 86dba8c0-d178-41e7-938c-ed49778fb52b doesn't exist in our database.
