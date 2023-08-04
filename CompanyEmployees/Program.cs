@@ -16,7 +16,10 @@ internal class Program
         builder.Services.ConfigureSqlConnection(builder.Configuration);
         builder.Services.ConfigureRepositoryManager();
 
-        builder.Services.AddControllers();
+        builder.Services.AddControllers(config =>
+        {
+            config.RespectBrowserAcceptHeader = true;
+        }).AddXmlDataContractSerializerFormatters();
 
         builder.Services.ConfigureCORS();
         builder.Services.ConfigureIISIntegration();
