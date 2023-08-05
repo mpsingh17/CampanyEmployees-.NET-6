@@ -2,6 +2,7 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.ErrorModels;
+using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -37,7 +38,7 @@ namespace CompanyEmployees.Controllers
             return Ok(companiesDTO);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "CompanyById")]
         public IActionResult GetCompany(Guid id)
         {
             var company = _repositoryManager.CompanyRepository
@@ -57,6 +58,25 @@ namespace CompanyEmployees.Controllers
 
             var companyDTO = _mapper.Map<CompanyDTO>(company);
             return Ok(companyDTO);
+        }
+
+        public IActionResult CreateCompany([FromBody] CreateCompanyDTO createCompanyDTO)
+        {
+            if (createCompanyDTO == null)
+            {
+                _loggerManager.LogError("The CreateCompanyDTO object sent by client is null");
+                return BadRequest("Null sent for CreateCompanyDTO object");
+            }
+
+            var companyToCreate = _mapper.Map<Company>(createCompanyDTO);
+
+            _repositoryManager.CompanyRepository.CreateCompany(companyToCreate);
+            _repositoryManager.Save();
+
+            var companyToReturn = _mapper.Map<CompanyDTO>(companyToCreate);
+
+            return CreatedAtRoute("CompanyById", new { companyToReturn.Id }, companyToReturn);
+
         }
     }
 }
