@@ -374,3 +374,6 @@ Entities/obj/
 LoggerService/bin/
 LoggerService/obj/
 
+# Ignore internal logs
+internal_logs/
+

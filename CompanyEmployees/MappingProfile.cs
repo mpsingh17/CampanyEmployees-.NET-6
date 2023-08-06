@@ -18,6 +18,7 @@ namespace CompanyEmployees
             CreateMap<Employee, EmployeeDTO>();
 
             CreateMap<CreateCompanyDTO, Company>();
+            CreateMap<CreateEmployeeDTO, Employee>();
         }
     }
 }

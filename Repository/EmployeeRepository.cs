@@ -16,6 +16,12 @@ namespace Repository
         {
         }
 
+        public void CreateEmployeeForCompany(Guid companyId, Employee employee)
+        {
+            employee.CompanyId = companyId;
+            Create(employee);
+        }
+
         public Employee GetEmployee(Guid companyId, Guid employeeId, bool trackChanges)
         {
             return FindByCondition(
