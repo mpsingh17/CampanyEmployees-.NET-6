@@ -38,6 +38,29 @@ namespace CompanyEmployees.Controllers
             return Ok(companiesDTO);
         }
 
+        [HttpGet("collection/({ids})", Name = "CompanyCollection")]
+        public IActionResult GetCompanyCollection(IEnumerable<Guid> ids)
+        {
+            if(ids == null)
+            {
+                _loggerManager.LogError("Parameter ids is null");
+                return BadRequest("Parameter ids is null");
+            }
+
+            var companiesInDb = _repositoryManager.CompanyRepository
+                .GetByIds(ids, trackChanges: false);
+
+            if (ids.Count() != companiesInDb.Count())
+            {
+                _loggerManager.LogError("Some IDs sent by client are not valid.");
+                return NotFound();
+            }
+
+            var companiesToReturn = _mapper.Map<IEnumerable<CompanyDTO>>(companiesInDb);
+
+            return Ok(companiesToReturn);
+        }
+
         [HttpGet("{id}", Name = "CompanyById")]
         public IActionResult GetCompany(Guid id)
         {
@@ -60,6 +83,7 @@ namespace CompanyEmployees.Controllers
             return Ok(companyDTO);
         }
 
+        [HttpPost]
         public IActionResult CreateCompany([FromBody] CreateCompanyDTO createCompanyDTO)
         {
             if (createCompanyDTO == null)
@@ -77,6 +101,30 @@ namespace CompanyEmployees.Controllers
 
             return CreatedAtRoute("CompanyById", new { companyToReturn.Id }, companyToReturn);
 
+        }
+
+        [HttpPost("collection")]
+        public IActionResult CreateCompanyCollection([FromBody]IEnumerable<CreateCompanyDTO> companyCollection)
+        {
+            if (companyCollection == null)
+            {
+                _loggerManager.LogError("Company collection sent from client is null.");
+                return BadRequest("Company collection is null");
+            }
+
+            var companiesToCreate = _mapper.Map<IEnumerable<Company>>(companyCollection);
+
+            foreach (var company in companiesToCreate)
+            {
+                _repositoryManager.CompanyRepository.CreateCompany(company);
+            }
+            _repositoryManager.Save();
+
+            var companyCollectionToReturn = _mapper.Map<IEnumerable<CompanyDTO>>(companiesToCreate);
+
+            var ids = string.Join(",", companyCollectionToReturn.Select(c => c.Id));
+
+            return CreatedAtRoute("CompanyCollection", new { ids }, companyCollectionToReturn);
         }
     }
 }
