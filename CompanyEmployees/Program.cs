@@ -21,7 +21,9 @@ internal class Program
             config.RespectBrowserAcceptHeader = true;
             config.ReturnHttpNotAcceptable = true;
 
-        }).AddXmlDataContractSerializerFormatters()
+        })
+        .AddNewtonsoftJson()
+        .AddXmlDataContractSerializerFormatters()
         .AddCustomCSVFormater();
 
         builder.Services.ConfigureCORS();
