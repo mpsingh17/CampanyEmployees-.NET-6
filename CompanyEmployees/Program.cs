@@ -3,6 +3,7 @@ using NLog;
 using CompanyEmployees.Extensions;
 using Contracts;
 using LoggerService;
+using Microsoft.AspNetCore.Mvc;
 
 internal class Program
 {
@@ -12,6 +13,11 @@ internal class Program
 
         // Add services to the container.
         builder.Services.AddRazorPages();
+
+        builder.Services.Configure<ApiBehaviorOptions>(options =>
+        {
+            options.SuppressModelStateInvalidFilter = true;
+        });
 
         builder.Services.ConfigureSqlConnection(builder.Configuration);
         builder.Services.ConfigureRepositoryManager();

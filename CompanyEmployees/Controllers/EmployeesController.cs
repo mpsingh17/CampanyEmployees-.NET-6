@@ -62,6 +62,12 @@ namespace CompanyEmployees.Controllers
         [HttpPost]
         public IActionResult CreateEmployeeForCompany(Guid companyId, [FromBody]CreateEmployeeDTO createEmployeeDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                _loggerManager.LogError("Invalid model state for the EmployeeForCreationDto object");
+                return UnprocessableEntity(ModelState);
+            }
+
             if (createEmployeeDTO == null)
             {
                 _loggerManager.LogError("Client sent a null CreateEmployeeDTO object.");
