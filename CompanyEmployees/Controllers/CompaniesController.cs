@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CompanyEmployees.ActionFilters;
 using CompanyEmployees.ModelBinders;
 using Contracts;
 using Entities.DataTransferObjects;
@@ -86,17 +87,13 @@ namespace CompanyEmployees.Controllers
         }
 
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCompany([FromBody] CreateCompanyDTO createCompanyDTO)
         {
-            if (createCompanyDTO == null)
-            {
-                _loggerManager.LogError("The CreateCompanyDTO object sent by client is null");
-                return BadRequest("Null sent for CreateCompanyDTO object");
-            }
-
             var companyToCreate = _mapper.Map<Company>(createCompanyDTO);
 
             _repositoryManager.CompanyRepository.CreateCompany(companyToCreate);
+            
             await _repositoryManager.SaveAsync();
 
             var companyToReturn = _mapper.Map<CompanyDTO>(companyToCreate);
@@ -148,14 +145,9 @@ namespace CompanyEmployees.Controllers
         }
 
         [HttpPut("{id}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ActionResult> UpdateCompany(Guid id, [FromBody] CompanyForUpdateDTO company)
         {
-            if(company == null)
-            {
-                _loggerManager.LogError("CompanyForUpdateDto object sent from client is null.");
-                return BadRequest("CompanyForUpdateDto object is null");
-            }
-
             var companyInDb = await _repositoryManager.CompanyRepository
                 .GetCompanyAsync(id, trackChanges: true);
 
