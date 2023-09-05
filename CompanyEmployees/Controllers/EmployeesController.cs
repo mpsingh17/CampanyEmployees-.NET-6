@@ -89,7 +89,7 @@ namespace CompanyEmployees.Controllers
 
             var employeeToCreate = _mapper.Map<Employee>(createEmployeeDTO);
             _repositoryManager.EmployeeRepository.CreateEmployeeForCompany(companyId, employeeToCreate);
-            _repositoryManager.Save();
+            _repositoryManager.SaveAsync();
 
             var employeeToReturn = _mapper.Map<EmployeeDTO>(employeeToCreate);
             return CreatedAtRoute(
@@ -118,7 +118,7 @@ namespace CompanyEmployees.Controllers
             }
 
             _repositoryManager.EmployeeRepository.DeleteEmployee(employeeInDb);
-            _repositoryManager.Save();
+            _repositoryManager.SaveAsync();
 
             return NoContent();
         }
@@ -157,7 +157,7 @@ namespace CompanyEmployees.Controllers
             }
 
             _mapper.Map(employee, employeeInDb);
-            _repositoryManager.Save();
+            _repositoryManager.SaveAsync();
 
             return NoContent();
         }
@@ -203,7 +203,7 @@ namespace CompanyEmployees.Controllers
             }
 
             _mapper.Map(employeeToPatch, employeeEntity);
-            _repositoryManager.Save();
+            _repositoryManager.SaveAsync();
             
             return NoContent();
         }

@@ -97,7 +97,7 @@ namespace CompanyEmployees.Controllers
             var companyToCreate = _mapper.Map<Company>(createCompanyDTO);
 
             _repositoryManager.CompanyRepository.CreateCompany(companyToCreate);
-            _repositoryManager.Save();
+            _repositoryManager.SaveAsync();
 
             var companyToReturn = _mapper.Map<CompanyDTO>(companyToCreate);
 
@@ -120,7 +120,7 @@ namespace CompanyEmployees.Controllers
             {
                 _repositoryManager.CompanyRepository.CreateCompany(company);
             }
-            _repositoryManager.Save();
+            _repositoryManager.SaveAsync();
 
             var companyCollectionToReturn = _mapper.Map<IEnumerable<CompanyDTO>>(companiesToCreate);
 
@@ -142,7 +142,7 @@ namespace CompanyEmployees.Controllers
             }
 
             _repositoryManager.CompanyRepository.DeleteCompany(companyInDb);
-            _repositoryManager.Save();
+            _repositoryManager.SaveAsync();
 
             return NoContent();
         }
@@ -164,7 +164,7 @@ namespace CompanyEmployees.Controllers
             }
 
             _mapper.Map(company, companyInDb);
-            _repositoryManager.Save();
+            _repositoryManager.SaveAsync();
 
             return NoContent();
         }
