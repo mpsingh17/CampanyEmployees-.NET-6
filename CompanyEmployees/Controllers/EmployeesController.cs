@@ -60,14 +60,14 @@ namespace CompanyEmployees.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateEmployeeForCompany(Guid companyId, [FromBody]CreateEmployeeDTO createEmployeeDTO)
+        public IActionResult CreateEmployeeForCompany(Guid companyId, [FromBody]EmployeeForCreateDTO createEmployeeDTO)
         {
             if (!ModelState.IsValid)
             {
                 _loggerManager.LogError("Invalid model state for the EmployeeForCreationDto object");
                 
                 // This line will add additional error message to Age property.
-                ModelState.AddModelError(nameof(CreateEmployeeDTO.Age), "Age field is required.");
+                ModelState.AddModelError(nameof(EmployeeForCreateDTO.Age), "Age field is required.");
 
                 return UnprocessableEntity(ModelState);
             }
@@ -129,6 +129,11 @@ namespace CompanyEmployees.Controllers
             Guid id, 
             [FromBody] EmployeeForUpdateDTO employee)
         {
+            if (!ModelState.IsValid)
+            {
+                _loggerManager.LogError("Invalid model state for the EmployeeForUpdateDto object");
+                return UnprocessableEntity(ModelState);
+            }
             if (employee == null)
             {
                 _loggerManager.LogError($"Client sent a null object to update employee.");
