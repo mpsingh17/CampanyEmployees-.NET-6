@@ -65,6 +65,10 @@ namespace CompanyEmployees.Controllers
             if (!ModelState.IsValid)
             {
                 _loggerManager.LogError("Invalid model state for the EmployeeForCreationDto object");
+                
+                // This line will add additional error message to Age property.
+                ModelState.AddModelError(nameof(CreateEmployeeDTO.Age), "Age field is required.");
+
                 return UnprocessableEntity(ModelState);
             }
 
