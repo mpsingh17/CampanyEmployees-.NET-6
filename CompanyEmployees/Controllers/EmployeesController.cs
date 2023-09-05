@@ -79,7 +79,7 @@ namespace CompanyEmployees.Controllers
             }
 
             var companyInDb = _repositoryManager.CompanyRepository
-                .GetCompany(companyId, trackChanges: false);
+                .GetCompanyAsync(companyId, trackChanges: false);
 
             if (companyInDb == null)
             {
@@ -102,7 +102,7 @@ namespace CompanyEmployees.Controllers
         public IActionResult DeleteEmployeeForCompany(Guid companyId, Guid id)
         {
             var companyInDb = _repositoryManager.CompanyRepository
-                .GetCompany(companyId, trackChanges: false);
+                .GetCompanyAsync(companyId, trackChanges: false);
             if (companyInDb == null)
             {
                 _loggerManager.LogError($"Company with ID = {companyId} doesn't exists in DB.");
@@ -141,7 +141,7 @@ namespace CompanyEmployees.Controllers
             }
 
             var companyInDb = _repositoryManager.CompanyRepository
-                .GetCompany(companyId, trackChanges: false);
+                .GetCompanyAsync(companyId, trackChanges: false);
             if (companyInDb == null)
             {
                 _loggerManager.LogError($"Company with ID = {companyId} doesn't exist in our DB.");
@@ -176,7 +176,7 @@ namespace CompanyEmployees.Controllers
             }
 
             var company = _repositoryManager.CompanyRepository
-                .GetCompany(companyId, trackChanges: false);
+                .GetCompanyAsync(companyId, trackChanges: false);
             if (company == null)
             {
                 _loggerManager.LogInfo($"Company with id: {companyId} doesn't exist in the database.");

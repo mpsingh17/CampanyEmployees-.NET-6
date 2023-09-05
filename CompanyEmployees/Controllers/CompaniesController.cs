@@ -32,7 +32,7 @@ namespace CompanyEmployees.Controllers
         public IActionResult GetAllCompanies()
         {
             var companies = _repositoryManager.CompanyRepository
-                .GetAllCompanies(trackChanges: false);
+                .GetAllCompaniesAsync(trackChanges: false);
 
             var companiesDTO = _mapper.Map<IEnumerable<CompanyDTO>>(companies);
 
@@ -40,7 +40,7 @@ namespace CompanyEmployees.Controllers
         }
 
         [HttpGet("collection/({ids})", Name = "CompanyCollection")]
-        public IActionResult GetCompanyCollection(
+        public async Task<IActionResult> GetCompanyCollection(
             [ModelBinder(BinderType = typeof(ArrayModelBinder))]IEnumerable<Guid> ids)
         {
             if(ids == null)
@@ -49,8 +49,8 @@ namespace CompanyEmployees.Controllers
                 return BadRequest("Parameter ids is null");
             }
 
-            var companiesInDb = _repositoryManager.CompanyRepository
-                .GetByIds(ids, trackChanges: false);
+            var companiesInDb = await _repositoryManager.CompanyRepository
+                .GetByIdsAsync(ids, trackChanges: false);
 
             if (ids.Count() != companiesInDb.Count())
             {
@@ -67,7 +67,7 @@ namespace CompanyEmployees.Controllers
         public IActionResult GetCompany(Guid id)
         {
             var company = _repositoryManager.CompanyRepository
-                .GetCompany(id, trackChanges: false);
+                .GetCompanyAsync(id, trackChanges: false);
 
             if (company == null)
             {
@@ -130,10 +130,11 @@ namespace CompanyEmployees.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteCompany(Guid id)
+        public async Task<IActionResult> DeleteCompany(Guid id)
         {
-            var companyInDb = _repositoryManager.CompanyRepository
-                .GetCompany(id, trackChanges: false);
+            var companyInDb = await _repositoryManager.CompanyRepository
+                .GetCompanyAsync(id, trackChanges: false);
+
             if (companyInDb == null)
             {
                 _loggerManager.LogError($"Company with ID = {id} doesn't exist in our DB.");
@@ -155,7 +156,7 @@ namespace CompanyEmployees.Controllers
                 return BadRequest("CompanyForUpdateDto object is null");
             }
 
-            var companyInDb = _repositoryManager.CompanyRepository.GetCompany(id, trackChanges: true);
+            var companyInDb = _repositoryManager.CompanyRepository.GetCompanyAsync(id, trackChanges: true);
             if(companyInDb == null)
             {
                 _loggerManager.LogError($"Company with iD {id} doesn't exist in our DB.");
