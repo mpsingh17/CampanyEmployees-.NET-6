@@ -168,6 +168,7 @@ namespace CompanyEmployees.Controllers
             Guid id,
             [FromBody] JsonPatchDocument<EmployeeForUpdateDTO> patchDoc)
         {
+
             if (patchDoc == null)
             {
                 _loggerManager.LogError("patchDoc object sent from client is null.");
@@ -191,7 +192,15 @@ namespace CompanyEmployees.Controllers
             }
             var employeeToPatch = _mapper.Map<EmployeeForUpdateDTO>(employeeEntity);
 
-            patchDoc.ApplyTo(employeeToPatch);
+            patchDoc.ApplyTo(employeeToPatch, ModelState);
+
+            TryValidateModel(employeeToPatch);
+
+            if (!ModelState.IsValid)
+            {
+                _loggerManager.LogError("Invalid model state for the patch document");
+                return UnprocessableEntity(ModelState);
+            }
 
             _mapper.Map(employeeToPatch, employeeEntity);
             _repositoryManager.Save();
