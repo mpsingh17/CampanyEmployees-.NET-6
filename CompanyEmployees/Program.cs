@@ -4,6 +4,7 @@ using CompanyEmployees.Extensions;
 using Contracts;
 using LoggerService;
 using Microsoft.AspNetCore.Mvc;
+using CompanyEmployees.ActionFilters;
 
 internal class Program
 {
@@ -36,6 +37,8 @@ internal class Program
         builder.Services.ConfigureIISIntegration();
         builder.Services.ConfigureLoggerService();
         builder.Services.AddAutoMapper(typeof(Program));
+
+        builder.Services.AddScoped<ValidationFilterAttribute>();
 
 
         // Loading NLog configuration.
