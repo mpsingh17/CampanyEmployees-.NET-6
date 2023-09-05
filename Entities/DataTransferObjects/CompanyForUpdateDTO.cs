@@ -12,7 +12,7 @@ namespace Entities.DataTransferObjects
         public string Address { get; set; }
         public string Country { get; set; }
 
-        public IEnumerable<CreateEmployeeDTO> Employees { get; set; }
+        public IEnumerable<EmployeeForCreateDTO> Employees { get; set; }
 
     }
 }

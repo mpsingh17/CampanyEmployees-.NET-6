@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.DataTransferObjects
 {
-    public class EmployeeForUpdateDTO : EmployeeForManipulationDTO
+    public class EmployeeForCreateDTO : EmployeeForManipulationDTO
     {
         
     }
