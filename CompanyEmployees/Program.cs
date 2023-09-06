@@ -38,7 +38,9 @@ internal class Program
         builder.Services.ConfigureLoggerService();
         builder.Services.AddAutoMapper(typeof(Program));
 
+        // Register action filters.
         builder.Services.AddScoped<ValidationFilterAttribute>();
+        builder.Services.AddScoped<ValidateCompanyExistsAttribute>();
 
 
         // Loading NLog configuration.
