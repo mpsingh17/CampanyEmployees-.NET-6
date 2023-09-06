@@ -41,7 +41,7 @@ internal class Program
         // Register action filters.
         builder.Services.AddScoped<ValidationFilterAttribute>();
         builder.Services.AddScoped<ValidateCompanyExistsAttribute>();
-
+        builder.Services.AddScoped<ValidateEmployeeForCompanyExistsAttribute>();
 
         // Loading NLog configuration.
         //LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
