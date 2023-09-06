@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CompanyEmployees.ActionFilters;
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
@@ -99,23 +100,10 @@ namespace CompanyEmployees.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public IActionResult DeleteEmployeeForCompany(Guid companyId, Guid id)
         {
-            var companyInDb = _repositoryManager.CompanyRepository
-                .GetCompanyAsync(companyId, trackChanges: false);
-            if (companyInDb == null)
-            {
-                _loggerManager.LogError($"Company with ID = {companyId} doesn't exists in DB.");
-                return NotFound("Company not found.");
-            }
-
-            var employeeInDb = _repositoryManager.EmployeeRepository
-                .GetEmployee(companyId, id, trackChanges: false);
-            if (employeeInDb == null)
-            {
-                _loggerManager.LogError($"Employee with ID = {id} doesn't exists in DB.");
-                return NotFound("Employee not found.");
-            }
+            var employeeInDb = HttpContext.Items["employee"] as Employee;
 
             _repositoryManager.EmployeeRepository.DeleteEmployee(employeeInDb);
             _repositoryManager.SaveAsync();
@@ -124,6 +112,7 @@ namespace CompanyEmployees.Controllers
         }
 
         [HttpPut("{id}")]
+        [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public IActionResult UpdateEmployeeForCompany(
             Guid companyId, 
             Guid id, 
@@ -133,29 +122,7 @@ namespace CompanyEmployees.Controllers
             {
                 _loggerManager.LogError("Invalid model state for the EmployeeForUpdateDto object");
                 return UnprocessableEntity(ModelState);
-            }
-            if (employee == null)
-            {
-                _loggerManager.LogError($"Client sent a null object to update employee.");
-                return BadRequest();
-            }
-
-            var companyInDb = _repositoryManager.CompanyRepository
-                .GetCompanyAsync(companyId, trackChanges: false);
-            if (companyInDb == null)
-            {
-                _loggerManager.LogError($"Company with ID = {companyId} doesn't exist in our DB.");
-                return NotFound();
-            }
-
-            var employeeInDb = _repositoryManager.EmployeeRepository
-                .GetEmployee(companyId, id, trackChanges: true);
-            if (employeeInDb == null)
-            {
-                _loggerManager.LogError($"Employee with ID = {id} doesn't exist in our DB.");
-                return NotFound();
-            }
-
+            }            var employeeInDb = HttpContext.Items["employee"] as Employee;
             _mapper.Map(employee, employeeInDb);
             _repositoryManager.SaveAsync();
 
@@ -163,6 +130,7 @@ namespace CompanyEmployees.Controllers
         }
 
         [HttpPatch("{id}")]
+        [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public IActionResult PartiallyUpdateEmployeeForCompany(
             Guid companyId,
             Guid id,
@@ -175,21 +143,8 @@ namespace CompanyEmployees.Controllers
                 return BadRequest("patchDoc object is null");
             }
 
-            var company = _repositoryManager.CompanyRepository
-                .GetCompanyAsync(companyId, trackChanges: false);
-            if (company == null)
-            {
-                _loggerManager.LogInfo($"Company with id: {companyId} doesn't exist in the database.");
-                return NotFound();
-            }
+            var employeeEntity = HttpContext.Items["employee"] as Employee;
 
-            var employeeEntity = _repositoryManager.EmployeeRepository
-                .GetEmployee(companyId, id, trackChanges: true);
-            if (employeeEntity == null)
-            {
-                _loggerManager.LogInfo($"Employee with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
             var employeeToPatch = _mapper.Map<EmployeeForUpdateDTO>(employeeEntity);
 
             patchDoc.ApplyTo(employeeToPatch, ModelState);
