@@ -3,6 +3,7 @@ using CompanyEmployees.ActionFilters;
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -28,10 +29,12 @@ namespace CompanyEmployees.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetEmployees(Guid companyId)
+        public IActionResult GetEmployeesForCompany(
+            Guid companyId,
+            [FromQuery] EmployeeParameters employeeParameters)
         {
             var employeesInDb = _repositoryManager.EmployeeRepository
-                .GetEmployees(companyId, trackChanges: false);
+                .GetEmployees(companyId, employeeParameters, trackChanges: false);
 
             if (employeesInDb.Any())
             {
