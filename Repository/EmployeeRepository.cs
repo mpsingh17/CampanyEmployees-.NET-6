@@ -44,10 +44,16 @@ namespace Repository
         {
             var employees =  await FindByCondition(e => e.CompanyId.Equals(companyId), trackChanges)
                 .OrderBy(e => e.Name)
+                .Skip((employeeParameters.PageNumber - 1) * employeeParameters.PageSize)
+                .Take(employeeParameters.PageSize)
                 .ToListAsync();
+
+            var count = await FindByCondition(e => e.CompanyId.Equals(companyId), trackChanges)
+                .CountAsync();
 
             return PagedList<Employee>.ToPagedList(
                 employees,
+                count,
                 employeeParameters.PageNumber,
                 employeeParameters.PageSize
             );
