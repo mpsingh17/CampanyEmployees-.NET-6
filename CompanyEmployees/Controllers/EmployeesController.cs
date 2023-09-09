@@ -29,12 +29,12 @@ namespace CompanyEmployees.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetEmployeesForCompany(
+        public async Task<IActionResult> GetEmployeesForCompany(
             Guid companyId,
             [FromQuery] EmployeeParameters employeeParameters)
         {
-            var employeesInDb = _repositoryManager.EmployeeRepository
-                .GetEmployees(companyId, employeeParameters, trackChanges: false);
+            var employeesInDb = await _repositoryManager.EmployeeRepository
+                .GetEmployeesAsync(companyId, employeeParameters, trackChanges: false);
 
             if (employeesInDb.Any())
             {
@@ -48,10 +48,10 @@ namespace CompanyEmployees.Controllers
         }
 
         [HttpGet("{employeeId}", Name = "GetEmployeeForCompany")]
-        public IActionResult GetEmployee(Guid companyId, Guid employeeId)
+        public async Task<IActionResult> GetEmployee(Guid companyId, Guid employeeId)
         {
-            var employeeInDb = _repositoryManager.EmployeeRepository
-                .GetEmployee(companyId, employeeId, trackChanges: false);
+            var employeeInDb = await _repositoryManager.EmployeeRepository
+                .GetEmployeeAsync(companyId, employeeId, trackChanges: false);
 
             if (employeeInDb != null)
             {
@@ -64,7 +64,7 @@ namespace CompanyEmployees.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateEmployeeForCompany(Guid companyId, [FromBody]EmployeeForCreateDTO createEmployeeDTO)
+        public async Task<IActionResult> CreateEmployeeForCompany(Guid companyId, [FromBody]EmployeeForCreateDTO createEmployeeDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace CompanyEmployees.Controllers
 
             var employeeToCreate = _mapper.Map<Employee>(createEmployeeDTO);
             _repositoryManager.EmployeeRepository.CreateEmployeeForCompany(companyId, employeeToCreate);
-            _repositoryManager.SaveAsync();
+            await _repositoryManager.SaveAsync();
 
             var employeeToReturn = _mapper.Map<EmployeeDTO>(employeeToCreate);
             return CreatedAtRoute(
@@ -104,19 +104,19 @@ namespace CompanyEmployees.Controllers
 
         [HttpDelete("{id}")]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
-        public IActionResult DeleteEmployeeForCompany(Guid companyId, Guid id)
+        public async Task<IActionResult> DeleteEmployeeForCompany(Guid companyId, Guid id)
         {
             var employeeInDb = HttpContext.Items["employee"] as Employee;
 
             _repositoryManager.EmployeeRepository.DeleteEmployee(employeeInDb);
-            _repositoryManager.SaveAsync();
+            await _repositoryManager.SaveAsync();
 
             return NoContent();
         }
 
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
-        public IActionResult UpdateEmployeeForCompany(
+        public async Task<IActionResult> UpdateEmployeeForCompany(
             Guid companyId, 
             Guid id, 
             [FromBody] EmployeeForUpdateDTO employee)
@@ -127,14 +127,14 @@ namespace CompanyEmployees.Controllers
                 return UnprocessableEntity(ModelState);
             }            var employeeInDb = HttpContext.Items["employee"] as Employee;
             _mapper.Map(employee, employeeInDb);
-            _repositoryManager.SaveAsync();
+            await _repositoryManager.SaveAsync();
 
             return NoContent();
         }
 
         [HttpPatch("{id}")]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
-        public IActionResult PartiallyUpdateEmployeeForCompany(
+        public async Task<IActionResult> PartiallyUpdateEmployeeForCompany(
             Guid companyId,
             Guid id,
             [FromBody] JsonPatchDocument<EmployeeForUpdateDTO> patchDoc)
@@ -161,7 +161,7 @@ namespace CompanyEmployees.Controllers
             }
 
             _mapper.Map(employeeToPatch, employeeEntity);
-            _repositoryManager.SaveAsync();
+            await _repositoryManager.SaveAsync();
             
             return NoContent();
         }

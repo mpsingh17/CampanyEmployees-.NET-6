@@ -2,6 +2,7 @@
 using Entities;
 using Entities.Models;
 using Entities.RequestFeatures;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,24 +29,24 @@ namespace Repository
             Delete(employee);
         }
 
-        public Employee GetEmployee(Guid companyId, Guid employeeId, bool trackChanges)
+        public async Task<Employee?> GetEmployeeAsync(Guid companyId, Guid employeeId, bool trackChanges)
         {
-            return FindByCondition(
+            return await FindByCondition(
                 e => e.CompanyId.Equals(companyId) && e.Id.Equals(employeeId),
                 trackChanges
-            ).SingleOrDefault();
+            ).SingleOrDefaultAsync();
         }
 
-        public IEnumerable<Employee> GetEmployees(
+        public async Task<IEnumerable<Employee>> GetEmployeesAsync(
             Guid companyId, 
             EmployeeParameters employeeParameters, 
             bool trackChanges)
         {
-            return FindByCondition(e => e.CompanyId.Equals(companyId), trackChanges)
+            return await FindByCondition(e => e.CompanyId.Equals(companyId), trackChanges)
                 .OrderBy(e => e.Name)
                 .Skip((employeeParameters.PageNumber - 1) * employeeParameters.PageSize)
                 .Take(employeeParameters.PageSize)
-                .ToList();
+                .ToListAsync();
         }
     }
 }

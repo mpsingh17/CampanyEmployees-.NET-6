@@ -33,7 +33,7 @@ namespace CompanyEmployees.ActionFilters
 
             var id = (Guid)context.ActionArguments["id"];
 
-            var employee = _repository.EmployeeRepository.GetEmployee(companyId, id, trackChanges);
+            var employee = _repository.EmployeeRepository.GetEmployeeAsync(companyId, id, trackChanges);
 
             if (employee == null)
             {
