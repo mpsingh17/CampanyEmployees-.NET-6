@@ -7,6 +7,7 @@ using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace CompanyEmployees.Controllers
 {
@@ -39,6 +40,7 @@ namespace CompanyEmployees.Controllers
             if (employeesInDb.Any())
             {
                 var employeesDTO = _mapper.Map<IEnumerable<EmployeeDTO>>(employeesInDb);
+                Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(employeesInDb.MetaData));
 
                 return Ok(employeesDTO);
             }
